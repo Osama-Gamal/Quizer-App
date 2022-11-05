@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quizer/Screen/welcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'Drawer/MainPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +24,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: WelcomePage(title: 'Flutter Demo Home Page'),
+      home: FirebaseAuth.instance.currentUser == null
+          ? WelcomePage(title: 'Flutter Demo Home Page')
+          : MainPage(),
     );
   }
 }

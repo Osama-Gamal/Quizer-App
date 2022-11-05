@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quizer/Drawer/CustomDrawer.dart';
+import 'package:quizer/Screen/forget_password.dart';
 import 'package:quizer/Screen/signup.dart';
 import 'package:quizer/Widget/bezierContainer.dart';
 
@@ -323,12 +324,20 @@ class _LoginPageState extends State<LoginPage> {
                   _emailPasswordWidget(),
                   const SizedBox(height: 20),
                   _submitButton(),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: const Text('Forgot Password ?',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500)),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgetPassword()));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      alignment: Alignment.centerRight,
+                      child: const Text('Forgot Password ?',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500)),
+                    ),
                   ),
                   _divider(),
                   googleButton(
