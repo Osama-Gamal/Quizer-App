@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:quizer/Screen/question_screen.dart';
 
 import '../Widget/CourseCard.dart';
 
@@ -60,7 +61,10 @@ class _HomePageState extends State<HomePage> {
             }).toList(),
           ),
         ),
-        CourseCard(size: size),
+        InkWell(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => QuestionScreen())),
+            child: CourseCard(size: size)),
         CourseCard(size: size),
         CourseCard(size: size),
       ],

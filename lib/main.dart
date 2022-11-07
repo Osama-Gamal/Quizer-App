@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       home: FirebaseAuth.instance.currentUser == null
           ? WelcomePage(title: 'Flutter Demo Home Page')
           : MainPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
