@@ -52,23 +52,30 @@ class QuestionScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        SizedBox(
-          height: 60,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: questionList.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.white,
+        Container(
+          height: 50,
+          margin: EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.all(4),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(25.0)),
+          child: SizedBox(
+            height: 60,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: questionList.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
-                  child: Icon(
-                    Icons.check,
-                    color: Colors.white,
+                  radius: 15,
+                  backgroundColor: Colors.white,
+                  child: CircleAvatar(
+                    child: Icon(
+                      Icons.check,
+                      color: Colors.white,
+                    ),
+                    radius: 12,
+                    backgroundColor: Colors.orange,
                   ),
-                  radius: 18,
-                  backgroundColor: Colors.orange,
                 ),
               ),
             ),
@@ -83,56 +90,60 @@ class QuestionScreen extends StatelessWidget {
             return Builder(builder: (BuildContext context) {
               return Column(
                 children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.72,
-                    margin: EdgeInsets.symmetric(horizontal: 10.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      color: Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Qestion ${_.question}/${questionList.length}",
-                                style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold),
-                              ),
-                              Icon(Icons.more_vert)
-                            ],
-                          ),
-                          Text(_.question),
-                          Flexible(
-                            child: ListView.builder(
-                              itemCount: 4,
-                              itemBuilder: (context, index) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
-                                child: Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width * .7,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      border: Border.all(
-                                          color: Colors.orange,
-                                          width: 2,
-                                          style: BorderStyle.solid)),
-                                  child: Center(
-                                      child: Text(
-                                    "A. Horse",
-                                    // textAlign: TextAlign.right,
-                                  )),
+                  Flexible(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1.25,
+                      height: MediaQuery.of(context).size.height * 0.72,
+                      margin: EdgeInsets.symmetric(horizontal: 10.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Qestion ${_.question}/${questionList.length}",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(Icons.more_vert)
+                              ],
+                            ),
+                            Text(_.question),
+                            Flexible(
+                              child: ListView.builder(
+                                itemCount: 4,
+                                itemBuilder: (context, index) => Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: Container(
+                                    height: 50,
+                                    width:
+                                        MediaQuery.of(context).size.width * .7,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        border: Border.all(
+                                            color: Colors.orange,
+                                            width: 2,
+                                            style: BorderStyle.solid)),
+                                    child: Center(
+                                        child: Text(
+                                      "A. Horse",
+                                      // textAlign: TextAlign.right,
+                                    )),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Text("Skip Question >>")
-                        ],
+                            Text("Skip Question >>")
+                          ],
+                        ),
                       ),
                     ),
                   ),
