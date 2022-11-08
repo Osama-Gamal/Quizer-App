@@ -15,7 +15,7 @@ class AuthService {
   handleAuthState() {
     return StreamBuilder(builder: (BuildContext context, snapshot) {
       if (snapshot.hasData) {
-        return const MyApp();
+        return MyApp();
       } else {
         return WelcomePage();
       }

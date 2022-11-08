@@ -65,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           userId: user.uid,
           name: user.displayName.toString(),
           email: user.email.toString(),
+          department: "none",
           image: "image",
           activeTime: FieldValue.serverTimestamp(),
           level: 0.0);

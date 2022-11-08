@@ -91,6 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 userId: user.user!.uid,
                 name: user.user!.displayName.toString(),
                 email: emailController!.text,
+                department: "none",
                 image: "image",
                 activeTime: FieldValue.serverTimestamp(),
                 level: 0.0);

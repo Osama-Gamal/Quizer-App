@@ -11,12 +11,12 @@ void main() async {
   await Firebase.initializeApp(
       //options: DefaultFirebaseOptions.currentPlatform,
       );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  final _auth = FirebaseAuth.instance;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: FirebaseAuth.instance.currentUser == null
+      home: _auth.currentUser == null
           ? WelcomePage(title: 'Flutter Demo Home Page')
           : CustomDrawer(),
     );
