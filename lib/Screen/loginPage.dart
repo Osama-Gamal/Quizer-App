@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quizer/Drawer/CustomDrawer.dart';
+import 'package:quizer/Model/UserProfile.dart';
 import 'package:quizer/Screen/forget_password.dart';
 import 'package:quizer/Screen/signup.dart';
 import 'package:quizer/Widget/bezierContainer.dart';
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController? passwordController = TextEditingController();
   bool userEmailError = false;
   bool userPasswordError = false;
+  final _firestore = FirebaseFirestore.instance;
 
   Widget _backButton() {
     return InkWell(
@@ -57,6 +60,16 @@ class _LoginPageState extends State<LoginPage> {
     User? user = authResult.user;
     print('user email = ${user!.email}');
 
+    if (authResult.additionalUserInfo!.isNewUser) {
+      userProfile accountUser = userProfile(
+          userId: user.uid,
+          name: user.displayName.toString(),
+          email: user.email.toString(),
+          image: "image",
+          activeTime: FieldValue.serverTimestamp(),
+          level: 0.0);
+      _firestore.collection('user').add(accountUser.toMap());
+    }
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CustomDrawer()));
   }

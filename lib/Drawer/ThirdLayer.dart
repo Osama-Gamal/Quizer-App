@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quizer/Screen/loginPage.dart';
 
 class ThirdLayer extends StatelessWidget {
   @override
@@ -49,7 +46,7 @@ class ThirdLayer extends StatelessWidget {
                 )),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   "Home Screen",
                   style: TextStyle(
@@ -100,17 +97,10 @@ class ThirdLayer extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 20),
                 ),
-                InkWell(
-                  onTap: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
-                  },
-                  child: Text(
-                    "Bye",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
+                Text(
+                  "Bye",
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
                 ),
                 Padding(

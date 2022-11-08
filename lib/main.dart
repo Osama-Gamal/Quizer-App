@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quizer/Screen/welcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'Drawer/CustomDrawer.dart';
 import 'Drawer/MainPage.dart';
 
 void main() async {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: FirebaseAuth.instance.currentUser == null
           ? WelcomePage(title: 'Flutter Demo Home Page')
-          : MainPage(),
+          : CustomDrawer(),
     );
   }
 }

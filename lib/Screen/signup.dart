@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quizer/Drawer/CustomDrawer.dart';
+import 'package:quizer/Model/UserProfile.dart';
 import 'package:quizer/Screen/loginPage.dart';
 import 'package:quizer/Widget/bezierContainer.dart';
 
@@ -21,6 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool userNameError = false;
   bool userEmailError = false;
   bool userPasswordError = false;
+  final _firestore = FirebaseFirestore.instance;
 
   Widget _backButton() {
     return InkWell(
@@ -84,6 +87,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 .createUserWithEmailAndPassword(
                     email: emailController!.text,
                     password: passwordController!.text);
+            userProfile accountUser = userProfile(
+                userId: user.user!.uid,
+                name: user.user!.displayName.toString(),
+                email: emailController!.text,
+                image: "image",
+                activeTime: FieldValue.serverTimestamp(),
+                level: 0.0);
+            _firestore.collection('user').add(accountUser.toMap());
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => CustomDrawer()));
           } on FirebaseAuthException catch (e) {
