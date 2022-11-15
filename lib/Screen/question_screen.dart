@@ -92,7 +92,7 @@ class QuestionScreen extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.25,
+                      width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.72,
                       margin: EdgeInsets.symmetric(horizontal: 10.0),
                       decoration: BoxDecoration(
