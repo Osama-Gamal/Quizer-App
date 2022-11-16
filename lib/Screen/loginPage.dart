@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
           image: "image",
           activeTime: FieldValue.serverTimestamp(),
           level: 0.0);
-      _firestore.collection('user').add(accountUser.toMap());
+      _firestore.collection('user').doc(user.uid).set(accountUser.toMap());
     }
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => CustomDrawer()));

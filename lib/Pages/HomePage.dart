@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../Dialogs/depatrment.dart';
 import '../Widget/CourseCard.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,9 +18,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String departmentValue = '';
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      var collection = FirebaseFirestore.instance.collection('user');
+      final user = FirebaseAuth.instance.currentUser;
+      var docSnapshot = await collection.doc(user!.uid).get().then((doc) {
+        // print("${doc.get("department")}");
+        departmentValue = doc.get("department");
+        print(departmentValue);
+      });
+      // Map<String, dynamic>? data = docSnapshot.data();
+      // print("doc data is $data");
+      if (departmentValue == "none") {
+        await showDialog(
+          context: context,
+          builder: (BuildContext context) => DepartmentDialog(),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    var index = 0;
+    for (var i = 0; i < 4; i++) {}
     return Column(
       children: [
         Padding(

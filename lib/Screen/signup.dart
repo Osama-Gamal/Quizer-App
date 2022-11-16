@@ -95,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 image: "image",
                 activeTime: FieldValue.serverTimestamp(),
                 level: 0.0);
-            _firestore.collection('user').add(accountUser.toMap());
+            _firestore.collection('user').doc(user.user!.uid).set(accountUser.toMap());
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => CustomDrawer()));
           } on FirebaseAuthException catch (e) {
